@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cactus & Coach - Arizona's Premier Luxury SUV Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.8;
+        }
+        
+        .hero {
+            min-height: auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 200px 20px 0;
+            background-image: url('images/hero.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            flex-grow: 1;
+        }
+        
+        .hero-bottom {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            padding-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-family: 'Tinos', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            line-height: 4.62rem;
+        }
+        
+        .hero-description {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-section {
+            background-color: #0a0a0a;
+            padding: 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #000000;
+            padding: 18px 50px;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 2px solid #d4af37;
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: #d4af37;
+        }
+        
+        section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Tinos', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: none;
+        }
+        
+        #fleet .section-title::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 15px auto 0;
+        }
+        
+        #fleet .section-title::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 0 auto 15px;
+            position: absolute;
+            bottom: -35px;
+            left: 0;
+        }
+        
+        .content-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .content-row.reverse {
+            direction: rtl;
+        }
+        
+        .content-row.reverse > * {
+            direction: ltr;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        
+        #family .image-placeholder,
+        #drivers .image-placeholder {
+            border-radius: 8px;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+        
+        .text-content h3 {
+            font-family: 'Tinos', serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #d4af37;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+        
+        .text-content ul {
+            list-style: disc;
+            padding: 0;
+            text-align: left;
+            font-size: 1.3rem;
+            font-weight: 400;
+            padding-left: 20px;
+            line-height: 0.9;
+        }
+        
+        .text-content li {
+            font-family: 'Raleway', sans-serif;
+            padding: 12px 0;
+            padding-left: 0;
+            position: relative;
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+        
+        .text-content li::before {
+            content: '';
+            display: none;
+        }
+        
+        .fleet-intro {
+            font-family: 'Raleway', sans-serif;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .fleet-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+        }
+        
+        .fleet-list li {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .fleet-list li:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+        
+        .text-content p {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero-description {
+                font-size: 12px;
+            }
+            
+            .content-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-row.reverse {
+                direction: ltr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .fleet-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const headerContent = doc.querySelector('body').innerHTML;
+                document.body.insertAdjacentHTML('afterbegin', headerContent);
+                
+                // Reinitialize header scripts
+                const hamburger = document.getElementById('hamburger');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const menuOverlay = document.getElementById('menuOverlay');
+                const mobileLinks = document.querySelectorAll('.mobile-menu .nav-link');
+                
+                function toggleMenu() {
+                    mobileMenu.classList.toggle('active');
+                    menuOverlay.classList.toggle('active');
+                }
+                
+                hamburger.addEventListener('click', toggleMenu);
+                menuOverlay.addEventListener('click', toggleMenu);
+                
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', toggleMenu);
+                });
+            });
+
+        // Load footer (includes moving footer <style> into this page's <head>)
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+
+                // Move any <style> tags from footer.html into this page's <head>
+                doc.querySelectorAll('style').forEach(styleTag => {
+                    document.head.appendChild(styleTag);
+                });
+
+                // Inject the footer HTML
+                document.body.insertAdjacentHTML('beforeend', doc.body.innerHTML);
+            });
+    </script>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>ARIZONA'S PREMIER LUXURY SUV SERVICE</h1>
+        </div>
+        <div class="hero-bottom">
+            <p class="hero-description">Luxury SUV transportation for airport transfers, corporate travel and special events<br>— starting at just $3/mile!</p>
+            <a href="tel:6025314672" class="cta-button">CALL OR TEXT (602) 531-4672</a>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <a href="tel:6025314672" class="cta-button">CALL OR TEXT (602) 531-4672</a>
+    </div>
+
+    <section id="drivers">
+        <h2 class="section-title">Drivers</h2>
+        <div class="content-row">
+            <div class="image-placeholder">
+                <img src="images/drivers.png" alt="Thomas Gateley - Professional Driver">
+            </div>
+            <div class="text-content">
+                <h3>Thomas Gateley —<br>Founder & Professional Driver</h3>
+                <ul>
+                    <li>10+ years of experience</li>
+                    <li>10,000+ five-star trips</li>
+                    <li>Born in Scottsdale with 34 years in the Valley</li>
+                    <li>Professional, reliable, and committed to exceptional service</li>
+                    <li>Leads a team of 10 skilled drivers</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="fleet">
+        <h2 class="section-title">Fleet</h2>
+        <div class="image-placeholder" style="margin-bottom: 40px;">
+            <img src="images/fleet.png" alt="Premium Black SUV Fleet">
+        </div>
+        <p class="fleet-intro">A premium, all-black fleet designed for comfort, safety, and style:</p>
+        <ul class="fleet-list">
+            <li>Chevrolet Suburban</li>
+            <li>GMC Yukon</li>
+            <li>Cadillac Escalade</li>
+            <li>Ford Expedition Max</li>
+            <li>Lincoln Navigator</li>
+            <li>Toyota Grand Highlander</li>
+        </ul>
+    </section>
+
+    <section id="family">
+        <h2 class="section-title">Family</h2>
+        <div class="content-row reverse">
+            <div class="image-placeholder">
+                <img src="images/family.png" alt="Cactus & Coach Family">
+            </div>
+            <div class="text-content">
+                <p style="font-size: 1.3rem; line-height: 1.8;">
+                    At Cactus & Coach, you're more than a client — you're family.
+                </p>
+                <p style="font-size: 1.3rem; line-height: 1.8; margin-top: 30px;">
+                    We proudly serve the Phoenix community with integrity, compassion, and heart. We believe luxury should still feel personal, and every ride should feel effortless.
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

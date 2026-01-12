@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reviews | Cactus &amp; Coach</title>
+
+    <!-- Match the rest of the site fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: "Raleway", sans-serif;
+        line-height: 1.8;
+      }
+
+      /* Hero (match About/Home vibe) */
+      .hero {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 180px 20px 80px; /* room for fixed header */
+        background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+      }
+
+      .hero h1 {
+        font-family: "Tinos", serif;
+        font-size: 4.5rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+      }
+
+      .hero-subtitle {
+        font-family: "Raleway", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: #d4af37;
+        letter-spacing: 2px;
+      }
+
+      .image-container {
+        width: 100%;
+        max-width: 460px;
+        margin: 30px auto 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #333;
+      }
+      
+      .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Page section spacing (match homepage) */
+      section {
+        padding: 100px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-family: "Tinos", serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 60px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 700;
+        position: relative;
+      }
+
+      /* Reviews grid */
+      .reviews-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      @media (min-width: 900px) {
+        .reviews-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .reviews-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+
+      /* Review card (match fleet-list vibe) */
+      .review-card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+        border: 1px solid #333;
+        padding: 30px;
+        transition: all 0.3s ease;
+      }
+
+      .review-card:hover {
+        border-color: #d4af37;
+        transform: translateY(-5px);
+      }
+
+      .review-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .review-stars {
+        color: #d4af37;
+        letter-spacing: 2px;
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .review-title {
+        font-family: "Tinos", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        color: #ffffff;
+      }
+
+      .review-who {
+        margin-top: 8px;
+        color: #999;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+      }
+
+      .review-tag {
+        display: inline-block;
+        border: 1px solid #333;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #d4af37;
+        white-space: nowrap;
+      }
+
+      .review-quote {
+        font-size: 1.05rem;
+        color: #ffffff;
+        opacity: 0.92;
+      }
+
+      .review-quote::before {
+        content: """;
+        color: #d4af37;
+        font-size: 2rem;
+        line-height: 0;
+        vertical-align: -0.25rem;
+        margin-right: 4px;
+      }
+
+      .review-quote::after {
+        content: """;
+        color: #d4af37;
+        font-size: 2rem;
+        line-height: 0;
+        vertical-align: -0.25rem;
+        margin-left: 4px;
+      }
+
+      /* CTA (match other pages) */
+      .cta-section {
+        background-color: #0a0a0a;
+        padding: 80px 20px;
+        text-align: center;
+        border-top: 1px solid #333;
+      }
+
+      .cta-section p {
+        font-family: "Raleway", sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #d4af37;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #d4af37;
+        color: #000000;
+        padding: 18px 50px;
+        text-decoration: none;
+        font-family: "Raleway", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        border: 2px solid #d4af37;
+      }
+
+      .cta-button:hover {
+        background-color: transparent;
+        color: #d4af37;
+      }
+
+      footer {
+        text-align: center;
+        padding: 60px 20px;
+        background-color: #000000;
+        border-top: 1px solid #333;
+      }
+
+      footer p {
+        font-family: "Raleway", sans-serif;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: 140px 20px 60px;
+          min-height: 50vh;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        section {
+          padding: 80px 16px;
+        }
+
+        .review-card {
+          padding: 22px;
+        }
+
+        .cta-section p {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+
+    <script>
+      // Load header
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.body.insertAdjacentHTML("afterbegin", data);
+        });
+
+      // Load footer (keeps footer <style> by moving it into this page's <head>)
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data, "text/html");
+
+          // Move any <style> tags from footer.html into this page's <head>
+          doc.querySelectorAll("style").forEach((styleTag) => {
+            document.head.appendChild(styleTag);
+          });
+
+          // Inject the footer HTML
+          document.body.insertAdjacentHTML("beforeend", doc.body.innerHTML);
+        });
+    </script>
+  </head>
+
+  <body>
+    <div class="hero">
+      <h1>REVIEWS</h1>
+      <div class="image-container">
+        <img src="images/reviews.png" alt="Client Reviews">
+      </div>
+    </div>
+
+    <section aria-label="Customer reviews">
+      <h2 class="section-title">Five-Star Experiences</h2>
+
+      <div class="reviews-grid">
+        <!-- 1 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Airport Pickup Perfection</div>
+              <div class="review-who">Sarah M. · Scottsdale</div>
+            </div>
+            <span class="review-tag">Airport Transfer</span>
+          </div>
+          <p class="review-quote">
+            Cactus &amp; Coach handled my airport pickup flawlessly. My driver tracked my flight, texted me when I landed, and met me right at the curb. The SUV was spotless and the ride was smooth. Couldn't ask for better service!
+          </p>
+        </article>
+
+        <!-- 2 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Concert Night Made Easy</div>
+              <div class="review-who">Jason L. · Phoenix</div>
+            </div>
+            <span class="review-tag">Event Transfer</span>
+          </div>
+          <p class="review-quote">
+            We used Cactus &amp; Coach for a concert transfer and it was worth every penny. No parking headaches, no traffic stress. Our driver dropped us off steps from the entrance and picked us up immediately after the show. Amazing service!
+          </p>
+        </article>
+
+        <!-- 3 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Wedding Day Transportation Done Right</div>
+              <div class="review-who">Emily T. · Chandler</div>
+            </div>
+            <span class="review-tag">Hourly Charter</span>
+          </div>
+          <p class="review-quote">
+            I booked an hourly charter for our wedding party and it was perfect. Our driver was prompt, professional, and patient with all the stops. The vehicle was spotless and luxurious. Truly elevated our special day!
+          </p>
+        </article>
+
+        <!-- 4 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Corporate Meeting Transfer</div>
+              <div class="review-who">Marcus P. · Tempe</div>
+            </div>
+            <span class="review-tag">Corporate</span>
+          </div>
+          <p class="review-quote">
+            Had an early morning office to client meeting transfer. My driver arrived 10 minutes early, the ride was quiet and comfortable, and I actually got extra work done on the way. Professional from start to finish.
+          </p>
+        </article>
+
+        <!-- 5 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Birthday Dinner Transportation</div>
+              <div class="review-who">Rachel S. · Mesa</div>
+            </div>
+            <span class="review-tag">Night Out</span>
+          </div>
+          <p class="review-quote">
+            I booked Cactus &amp; Coach for a birthday dinner transfer with friends, and the experience was fantastic. Our driver was on time, courteous, and made the evening feel effortless. No parking worries—just a smooth, stylish ride all night.
+          </p>
+        </article>
+
+        <!-- 6 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Golf Resort Transfer Excellence</div>
+              <div class="review-who">Dave R. · Phoenix</div>
+            </div>
+            <span class="review-tag">Resort Transfer</span>
+          </div>
+          <p class="review-quote">
+            Booked a round-trip transfer to a golf resort in Scottsdale. Timing was perfect both ways, and there was plenty of space for our clubs. Absolutely top-notch service.
+          </p>
+        </article>
+
+        <!-- 7 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">All-Day Conference Charter</div>
+              <div class="review-who">Kendall W. · Gilbert</div>
+            </div>
+            <span class="review-tag">Business</span>
+          </div>
+          <p class="review-quote">
+            We booked an hourly charter for an all-day business conference, and it made everything run smoothly. The driver managed multiple stops, stayed flexible with our schedule changes, and kept the entire team on time. A seamless professional experience.
+          </p>
+        </article>
+
+        <!-- 8 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Stress-Free Medical Appointment Drop-Off</div>
+              <div class="review-who">Linda F. · Peoria</div>
+            </div>
+            <span class="review-tag">Medical</span>
+          </div>
+          <p class="review-quote">
+            I needed transportation to a specialist appointment and Cactus &amp; Coach made it simple. The driver was kind, patient, and helpful throughout the trip. The safest and most comfortable ride I've had in years.
+          </p>
+        </article>
+
+        <!-- 9 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Bachelorette Party Success!</div>
+              <div class="review-who">Megan H. · Scottsdale</div>
+            </div>
+            <span class="review-tag">Group Night</span>
+          </div>
+          <p class="review-quote">
+            We used their hourly charter for a bachelorette party and it was PERFECT. Multiple stops, no rush, and our driver made sure everyone was safe and cared for. This service made the night stress-free and unforgettable.
+          </p>
+        </article>
+
+        <!-- 10 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-title">Holiday Light Tour Magic</div>
+              <div class="review-who">Anthony C. · Queen Creek</div>
+            </div>
+            <span class="review-tag">Family</span>
+          </div>
+          <p class="review-quote">
+            Cactus &amp; Coach took our family on a holiday light tour and it was incredible. The route was amazing, the SUV was comfortable, and our kids absolutely loved the experience. This will be a new family tradition!
+          </p>
+        </article>
+      </div>
+    </section>
+
+  </body>
+</html>

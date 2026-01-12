@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Cactus & Coach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.8;
+        }
+        
+        .hero {
+            min-height: 35vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 40px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+        }
+        
+        .hero h1 {
+            font-family: 'Tinos', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        
+        .hero-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 2px;
+        }
+        
+        section {
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Tinos', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #d4af37;
+            font-weight: 300;
+        }
+        
+        .intro-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border: 1px solid #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #0a0a0a;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #333;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        th {
+            background-color: #1a1a1a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        td {
+            font-size: 0.85rem;
+        }
+        
+        .gold-col {
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+        
+        .platinum-col {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        .reserve-col {
+            background-color: rgba(212, 175, 55, 0.15);
+        }
+        
+        .table-note {
+            font-size: 15px;
+            color: #999;
+            margin-top: 10px;
+            font-style: italic;
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        .benefits-section {
+            background-color: #0a0a0a;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 25px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card h3 {
+            font-family: 'Tinos', serif;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #d4af37;
+        }
+        
+        .benefit-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .tier-section {
+            padding: 40px 20px;
+        }
+        
+        .tier-highlight {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 35px;
+            border: 2px solid #d4af37;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+        
+        .tier-highlight h3 {
+            font-family: 'Tinos', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+            text-align: center;
+        }
+        
+        .tier-highlight ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tier-highlight li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .tier-highlight li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+        
+        .snowbird-section {
+            background-color: #0a0a0a;
+            padding: 35px;
+            border: 1px solid #333;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+        
+        .snowbird-section h3 {
+            font-family: 'Tinos', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        
+        .snowbird-section p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .snowbird-section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .snowbird-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .snowbird-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 1.3rem;
+        }
+        
+        .heart-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .heart-content {
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+        
+        .heart-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .image-container {
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .tier-highlight {
+                padding: 30px 20px;
+            }
+            
+            .tier-highlight h3 {
+                font-size: 1.8rem;
+            }
+            
+            .snowbird-section {
+                padding: 30px 20px;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                // Keep your existing behavior (no parsing)
+                document.body.insertAdjacentHTML('afterbegin', data);
+            });
+
+        // Load footer (includes moving footer <style> into this page's <head>)
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+
+                // Move any <style> tags from footer.html into this page's <head>
+                doc.querySelectorAll('style').forEach(styleTag => {
+                    document.head.appendChild(styleTag);
+                });
+
+                // Inject the footer HTML
+                document.body.insertAdjacentHTML('beforeend', doc.body.innerHTML);
+            });
+    </script>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>PRICING</h1>
+        <p class="hero-subtitle">Transparent. Flexible. Unmatched Value.</p>
+        <div class="image-container" style="margin-top: 30px;">
+            <img src="images/pricing.png" alt="Pricing Overview">
+        </div>
+    </div>
+
+    <section id="membership">
+        <h2 class="section-title">Cactus & Coach Memberships</h2>
+        <p class="section-subtitle">Elevate Your Journey with FREE airport transfers</p>
+        <p class="intro-text">
+            At Cactus & Coach, we've redefined private luxury transportation. Our membership program is designed for Valley residents who value reliability, transparency, and world-class professionalism.
+        </p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>Unmatched Flexibility</h3>
+                <p>Designed to fit your life, your work, and your family.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>All Major Airports</h3>
+                <p>Use your membership for transfers to and from Phoenix Sky Harbor, Mesa Gateway, and Scottsdale airports.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Business Travel</h3>
+                <p>All membership benefits and FREE airport transfers include business travel.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Full Household Access</h3>
+                <p>Your membership isn't just for you—it covers your entire household, including your spouse and children.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Visitor Friendly</h3>
+                <p>Extend your luxury service to friends and family visiting from out of town.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>No Contracts</h3>
+                <p>Upgrade, downgrade, pause, or cancel your membership at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tier-section">
+        <h2 class="section-title">Choose Your Tier</h2>
+        <p class="intro-text">
+            Whether you travel once a month or once a week, we have a membership tailored to your lifestyle.
+        </p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>FEATURE</th>
+                        <th>SILVER<br>(Pay-Per-Ride)</th>
+                        <th class="gold-col">GOLD</th>
+                        <th class="platinum-col">PLATINUM</th>
+                        <th class="reserve-col">RESERVE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Priority Status</strong></td>
+                        <td>None</td>
+                        <td class="gold-col">High</td>
+                        <td class="platinum-col">Higher</td>
+                        <td class="reserve-col">Highest</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zone 1</strong><br>(1–20 miles)</td>
+                        <td>None</td>
+                        <td class="gold-col">$100 / month</td>
+                        <td class="platinum-col">$200 / month</td>
+                        <td class="reserve-col">$300 / month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zone 2</strong><br>(21–30 miles)</td>
+                        <td>None</td>
+                        <td class="gold-col">$150 / month</td>
+                        <td class="platinum-col">$300 / month</td>
+                        <td class="reserve-col">$450 / month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zone 3</strong><br>(31–50 miles)</td>
+                        <td>None</td>
+                        <td class="gold-col">$200 / month</td>
+                        <td class="platinum-col">$400 / month</td>
+                        <td class="reserve-col">$600 / month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Free Airport Transfers</strong></td>
+                        <td>None</td>
+                        <td class="gold-col">2 One-way / month</td>
+                        <td class="platinum-col">4 One-way / month</td>
+                        <td class="reserve-col">6 One-way / month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transfer (A to B)</strong></td>
+                        <td>$3 / mile*<br>($60 Minimum)</td>
+                        <td class="gold-col">$3 / mile*<br>($50 Minimum)</td>
+                        <td class="platinum-col">$3 / mile*<br>($50 Minimum)</td>
+                        <td class="reserve-col">$3 / mile*<br>($50 Minimum)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Charter (Hourly)</strong></td>
+                        <td>$125 / hour*<br>(4 hr Minimum)</td>
+                        <td class="gold-col">$100 / hour*<br>(3 hr Minimum)</td>
+                        <td class="platinum-col">$100 / hour*<br>(2 hr Minimum)</td>
+                        <td class="reserve-col">$100 / hour*<br>(1 hr Minimum)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="table-note">
+            *Plus 20% Gratuity. Phoenix Sky Harbor charges all commercial vehicles a $5 fee. Zones are based on shortest distance from primary residence or business to Terminal 4 of Phoenix Sky Harbor using Google Maps. Additional cost apply beyond mileage limit. Some cities are only eligible for certain zones, regardless of shortest distance. See terms and conditions for details.
+        </p>
+    </section>
+
+    <section class="benefits-section">
+        <h2 class="section-title">Why Become a Member?</h2>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>Surge Protection</h3>
+                <p>Unlike app-based platforms, your rates are guaranteed at the time of booking. No unexpected price hikes during peak times or holidays.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>True Flexibility</h3>
+                <p>Your membership includes your entire household—spouse, children, and even visiting friends or family.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Priority Booking</h3>
+                <p>Members always receive booking priority over "Silver" pay-per-ride clients during high-demand periods.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Sprinter Savings</h3>
+                <p>Access exclusive, member-only rates for our Mercedes-Benz Sprinter service (up to 14 passengers) for weddings, proms, and large group events.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tier-section">
+        <div class="tier-highlight">
+            <h3>Why Choose Reserve?</h3>
+            <p style="text-align: center; font-size: 0.95rem; margin-bottom: 25px;">
+                The Reserve Tier is the ultimate membership for clients who demand the highest level of service and efficiency.
+            </p>
+            <ul>
+                <li>Highest Priority: Gain the highest booking priority during peak demand periods.</li>
+                <li>Maximum Value: Includes 6 FREE one-way airport transfers every month, covering business travel and your entire household.</li>
+                <li>Lowest Minimums: Enjoy our lowest transfer minimum of $50 and a charter minimum of just 1 hour.</li>
+                <li>Ultimate Flexibility: Perfect for high-travel months with the ability to pause or downgrade during your off-season.</li>
+            </ul>
+        </div>
+
+        <div class="snowbird-section">
+            <h3>The "Snowbird" Advantage</h3>
+            <p>Perfect for seasonal residents. Only pay for the high-travel months you are in Arizona. For example:</p>
+            <ul>
+                <li>Oct – April: Active Membership (Reserve)</li>
+                <li>May: Downgrade to Platinum for low travel</li>
+                <li>June – Sept: Pause membership while you are away.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="heart-section">
+        <div class="heart-content">
+            <h2 class="section-title">Every Ride Has a Heart</h2>
+            <p>
+                By choosing a Cactus & Coach membership, you are doing more than booking a ride. You are directly supporting Ryan, the 2-year-old son of our founder Thomas Gateley. Ryan is courageously living with a disability that prevents him from walking, and every membership helps provide for his specialized care and future.
+            </p>
+        </div>
+        
+        <div class="image-container">
+            <img src="images/family1.png" alt="Ryan - Our Inspiration">
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Cactus & Coach</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.8;
+        }
+        
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 180px 20px 12.5px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+        }
+        
+        .hero h1 {
+            font-family: 'Tinos', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .hero-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 2px;
+        }
+        
+        .about-section {
+            padding: 12.5px 20px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ✅ MATCHES HOMEPAGE FAMILY SECTION EXACTLY */
+        .about-content {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .about-content p + p {
+            margin-top: 40px;
+        }
+        
+        .image-container {
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 60px;
+                min-height: 50vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .about-content {
+                font-size: 1.15rem;
+                line-height: 1.8;
+            }
+        }
+    </style>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            });
+
+        // Load footer (keeps footer <style> by moving it into this page's <head>)
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+
+                // Move any <style> tags from footer.html into this page's <head>
+                doc.querySelectorAll('style').forEach(styleTag => {
+                    document.head.appendChild(styleTag);
+                });
+
+                // Inject the footer HTML
+                document.body.insertAdjacentHTML('beforeend', doc.body.innerHTML);
+            });
+    </script>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1>ABOUT US</h1>
+        <p class="hero-subtitle">Service with a Heart</p>
+    </div>
+
+    <section class="about-section">
+        <div class="about-content">
+            <p>
+                At Cactus & Coach, we believe luxury isn't just about the vehicle — it's about the experience.
+            </p>
+
+            <p>
+                Founded by Thomas Gateley, a seasoned professional with over a decade of rideshare excellence and more than 10,000 five-star trips, Cactus & Coach was created from a commitment to restore the extraordinary customer service that's been lost in today's transportation industry. Born in Scottsdale with 34 years in the Valley, Thomas combines deep local knowledge with world-class professionalism to deliver a truly elevated private SUV service.
+            </p>
+
+            <p>
+                But this isn't just a business — it's a passion with a purpose. By choosing Cactus & Coach, you're not only experiencing the best driver, in the best vehicle, at the best rates — you're also supporting his 2-year-old son, Ryan, who is courageously living with a disability that prevents him from walking. Every ride helps provide for Ryan's care and future.
+            </p>
+
+            <p class="hero-subtitle">
+                When you ride with us, you're part of something bigger: exceptional service with a heart.
+            </p>
+        </div>
+        
+        <div class="image-container">
+            <img src="images/son.png" alt="Ryan - Our Inspiration">
+        </div>
+    </section>
+
+</body>
+</html>
