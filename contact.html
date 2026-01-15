@@ -229,6 +229,17 @@
             .then(response => response.text())
             .then(data => {
                 document.body.insertAdjacentHTML('afterbegin', data);
+                
+                // Find and execute the script from header.html
+                const headerScripts = document.querySelectorAll('body > script');
+                headerScripts.forEach(oldScript => {
+                    if (oldScript.textContent.includes('hamburger')) {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = oldScript.textContent;
+                        document.body.appendChild(newScript);
+                        oldScript.remove();
+                    }
+                });
             });
 
         // Load footer (keeps footer <style> by moving it into this page's <head>)
