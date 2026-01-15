@@ -340,12 +340,15 @@
             .then(data => {
                 document.body.insertAdjacentHTML('afterbegin', data);
                 
-                // Execute any scripts that were in the header
-                const scripts = document.querySelectorAll('header script, .menu-overlay + script, .cactus-mobile-menu + script');
-                scripts.forEach(script => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    script.parentNode.replaceChild(newScript, script);
+                // Find and execute the script from header.html
+                const headerScripts = document.querySelectorAll('body > script');
+                headerScripts.forEach(oldScript => {
+                    if (oldScript.textContent.includes('hamburger')) {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = oldScript.textContent;
+                        document.body.appendChild(newScript);
+                        oldScript.remove();
+                    }
                 });
             });
 
