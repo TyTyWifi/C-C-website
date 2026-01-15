@@ -338,8 +338,15 @@
         fetch('header.html')
             .then(response => response.text())
             .then(data => {
-                // Keep your existing behavior (no parsing)
                 document.body.insertAdjacentHTML('afterbegin', data);
+                
+                // Execute any scripts that were in the header
+                const scripts = document.querySelectorAll('header script, .menu-overlay + script, .cactus-mobile-menu + script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    script.parentNode.replaceChild(newScript, script);
+                });
             });
 
         // Load footer (includes moving footer <style> into this page's <head>)
