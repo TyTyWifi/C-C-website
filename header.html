@@ -82,6 +82,20 @@
         display: block !important;
     }
 
+    @media (max-width: 1024px) {
+        header.cactus-header img.cactus-logo {
+            height: 90px !important;
+            max-height: 90px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        header.cactus-header img.cactus-logo {
+            height: 70px !important;
+            max-height: 70px !important;
+        }
+    }
+
     /* If other pages have aggressive <a> styles, this prevents underline/spacing on the logo link */
     a.cactus-logo-link {
         display: inline-block !important;
@@ -174,12 +188,12 @@
 
     @media (max-width: 768px) {
         header.cactus-header {
-            padding: 20px !important;
+            padding: 15px 20px !important;
         }
 
         header.cactus-header img.cactus-logo {
-            max-height: 150px !important;
-            height: 150px !important;
+            max-height: 80px !important;
+            height: 80px !important;
         }
 
         .cactus-nav-left, .cactus-nav-right {
