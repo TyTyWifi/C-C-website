@@ -211,15 +211,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <script>
-    (function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
         const mobileLinks = document.querySelectorAll('.cactus-mobile-menu .cactus-nav-link');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+            }
         }
 
         if (hamburger) {
@@ -230,8 +232,10 @@
             menuOverlay.addEventListener('click', toggleMenu);
         }
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
-    })();
+        if (mobileLinks.length > 0) {
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        }
+    });
 </script>
