@@ -48,9 +48,13 @@
         }
         
         section {
-            padding: 40px 20px;
+            padding: 40px 20px 35px 20px;
             max-width: 1400px;
             margin: 0 auto;
+        }
+        
+        section:first-of-type {
+            padding-top: 40px;
         }
         
         .section-title {
@@ -83,10 +87,63 @@
             line-height: 1.6;
         }
         
+        .table-wrapper {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .scroll-hint {
+            display: none;
+            background: linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%);
+            text-align: center;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .scroll-hint span {
+            display: inline-block;
+            margin-left: 8px;
+            animation: slideRight 1.5s infinite;
+        }
+        
+        @keyframes slideRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+        
         .table-container {
             overflow-x: auto;
-            margin: 30px 0;
             border: 1px solid #333;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+        
+        .table-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 60px;
+            background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 100%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .table-container.show-scroll-indicator::after {
+            opacity: 1;
         }
         
         table {
@@ -137,7 +194,7 @@
         
         .benefits-section {
             background-color: #0a0a0a;
-            padding: 40px 20px;
+            padding: 40px 20px 35px 20px;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
         }
@@ -175,12 +232,12 @@
         }
         
         .tier-section {
-            padding: 40px 20px;
+            padding: 40px 20px 35px 20px;
         }
         
         .tier-highlight {
             background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-            padding: 35px;
+            padding: 50px;
             border: 2px solid #d4af37;
             max-width: 1000px;
             margin: 30px auto;
@@ -192,6 +249,7 @@
             margin-bottom: 20px;
             color: #d4af37;
             text-align: center;
+            white-space: nowrap;
         }
         
         .tier-highlight ul {
@@ -216,24 +274,26 @@
         }
         
         .snowbird-section {
-            background-color: #0a0a0a;
-            padding: 35px;
-            border: 1px solid #333;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 50px;
+            border: 2px solid #d4af37;
             max-width: 1000px;
             margin: 30px auto;
         }
         
         .snowbird-section h3 {
             font-family: 'Tinos', serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 20px;
             color: #d4af37;
+            text-align: center;
         }
         
         .snowbird-section p {
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 15px;
+            text-align: center;
         }
         
         .snowbird-section ul {
@@ -243,22 +303,23 @@
         }
         
         .snowbird-section li {
-            padding: 8px 0;
-            padding-left: 25px;
+            padding: 10px 0;
+            padding-left: 35px;
             position: relative;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
         
         .snowbird-section li::before {
-            content: '•';
+            content: '→';
             position: absolute;
             left: 0;
             color: #d4af37;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
         
         .heart-section {
-            padding: 40px 20px;
+            padding: 40px 20px 35px 20px;
             text-align: center;
         }
         
@@ -295,6 +356,10 @@
         }
         
         @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+            
             .hero {
                 padding: 140px 20px 60px;
             }
@@ -312,15 +377,16 @@
             }
             
             .tier-highlight {
-                padding: 30px 20px;
+                padding: 40px 20px;
             }
             
             .tier-highlight h3 {
                 font-size: 1.8rem;
+                white-space: normal;
             }
             
             .snowbird-section {
-                padding: 30px 20px;
+                padding: 40px 20px;
             }
             
             table {
@@ -340,7 +406,6 @@
             .then(data => {
                 document.body.insertAdjacentHTML('afterbegin', data);
                 
-                // Find and execute the script from header.html
                 const headerScripts = document.querySelectorAll('body > script');
                 headerScripts.forEach(oldScript => {
                     if (oldScript.textContent.includes('hamburger')) {
@@ -352,21 +417,60 @@
                 });
             });
 
-        // Load footer (includes moving footer <style> into this page's <head>)
+        // Load footer
         fetch('footer.html')
             .then(response => response.text())
             .then(data => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data, 'text/html');
 
-                // Move any <style> tags from footer.html into this page's <head>
                 doc.querySelectorAll('style').forEach(styleTag => {
                     document.head.appendChild(styleTag);
                 });
 
-                // Inject the footer HTML
                 document.body.insertAdjacentHTML('beforeend', doc.body.innerHTML);
             });
+
+        // Table scroll indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableContainer = document.querySelector('.table-container');
+            const scrollHint = document.querySelector('.scroll-hint');
+            
+            if (tableContainer && scrollHint) {
+                // Check if table is scrollable and add indicator
+                function updateScrollIndicator() {
+                    const isScrollable = tableContainer.scrollWidth > tableContainer.clientWidth;
+                    const isScrolledToEnd = tableContainer.scrollLeft >= (tableContainer.scrollWidth - tableContainer.clientWidth - 10);
+                    
+                    if (isScrollable && !isScrolledToEnd) {
+                        tableContainer.classList.add('show-scroll-indicator');
+                    } else {
+                        tableContainer.classList.remove('show-scroll-indicator');
+                    }
+                }
+                
+                // Initial check
+                updateScrollIndicator();
+                
+                // Update on scroll
+                tableContainer.addEventListener('scroll', updateScrollIndicator);
+                
+                // Update on window resize
+                window.addEventListener('resize', updateScrollIndicator);
+                
+                // Hide hint after first scroll
+                let hasScrolled = false;
+                tableContainer.addEventListener('scroll', function() {
+                    if (!hasScrolled && tableContainer.scrollLeft > 20) {
+                        hasScrolled = true;
+                        scrollHint.style.animation = 'none';
+                        setTimeout(() => {
+                            scrollHint.style.opacity = '0.6';
+                        }, 100);
+                    }
+                });
+            }
+        });
     </script>
 </head>
 
@@ -388,10 +492,6 @@
 
         <div class="benefits-grid">
             <div class="benefit-card">
-                <h3>Unmatched Flexibility</h3>
-                <p>Designed to fit your life, your work, and your family.</p>
-            </div>
-            <div class="benefit-card">
                 <h3>All Major Airports</h3>
                 <p>Use your membership for transfers to and from Phoenix Sky Harbor, Mesa Gateway, and Scottsdale airports.</p>
             </div>
@@ -408,6 +508,10 @@
                 <p>Extend your luxury service to friends and family visiting from out of town.</p>
             </div>
             <div class="benefit-card">
+                <h3>Unmatched Value</h3>
+                <p>Designed to fit your life, your work, and your family.</p>
+            </div>
+            <div class="benefit-card">
                 <h3>No Contracts</h3>
                 <p>Upgrade, downgrade, pause, or cancel your membership at any time.</p>
             </div>
@@ -420,69 +524,75 @@
             Whether you travel once a month or once a week, we have a membership tailored to your lifestyle.
         </p>
 
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>FEATURE</th>
-                        <th>SILVER<br>(Pay-Per-Ride)</th>
-                        <th class="gold-col">GOLD</th>
-                        <th class="platinum-col">PLATINUM</th>
-                        <th class="reserve-col">RESERVE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Priority Status</strong></td>
-                        <td>None</td>
-                        <td class="gold-col">High</td>
-                        <td class="platinum-col">Higher</td>
-                        <td class="reserve-col">Highest</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Zone 1</strong><br>(1–20 miles)</td>
-                        <td>None</td>
-                        <td class="gold-col">$100 / month</td>
-                        <td class="platinum-col">$200 / month</td>
-                        <td class="reserve-col">$300 / month</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Zone 2</strong><br>(21–30 miles)</td>
-                        <td>None</td>
-                        <td class="gold-col">$150 / month</td>
-                        <td class="platinum-col">$300 / month</td>
-                        <td class="reserve-col">$450 / month</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Zone 3</strong><br>(31–50 miles)</td>
-                        <td>None</td>
-                        <td class="gold-col">$200 / month</td>
-                        <td class="platinum-col">$400 / month</td>
-                        <td class="reserve-col">$600 / month</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Free Airport Transfers</strong></td>
-                        <td>None</td>
-                        <td class="gold-col">2 One-way / month</td>
-                        <td class="platinum-col">4 One-way / month</td>
-                        <td class="reserve-col">6 One-way / month</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Transfer (A to B)</strong></td>
-                        <td>$3 / mile*<br>($60 Minimum)</td>
-                        <td class="gold-col">$3 / mile*<br>($50 Minimum)</td>
-                        <td class="platinum-col">$3 / mile*<br>($50 Minimum)</td>
-                        <td class="reserve-col">$3 / mile*<br>($50 Minimum)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Charter (Hourly)</strong></td>
-                        <td>$125 / hour*<br>(4 hr Minimum)</td>
-                        <td class="gold-col">$100 / hour*<br>(3 hr Minimum)</td>
-                        <td class="platinum-col">$100 / hour*<br>(2 hr Minimum)</td>
-                        <td class="reserve-col">$100 / hour*<br>(1 hr Minimum)</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="table-wrapper">
+            <div class="scroll-hint">
+                Scroll right to see all membership tiers <span>→→→</span>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>FEATURE</th>
+                            <th>SILVER<br>(Pay-Per-Ride)</th>
+                            <th class="gold-col">GOLD</th>
+                            <th class="platinum-col">PLATINUM</th>
+                            <th class="reserve-col">RESERVE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Priority Status</strong></td>
+                            <td>None</td>
+                            <td class="gold-col">High</td>
+                            <td class="platinum-col">Higher</td>
+                            <td class="reserve-col">Highest</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zone 1</strong><br>(1–20 miles)</td>
+                            <td>None</td>
+                            <td class="gold-col">$100 / month</td>
+                            <td class="platinum-col">$200 / month</td>
+                            <td class="reserve-col">$300 / month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zone 2</strong><br>(21–30 miles)</td>
+                            <td>None</td>
+                            <td class="gold-col">$150 / month</td>
+                            <td class="platinum-col">$300 / month</td>
+                            <td class="reserve-col">$450 / month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zone 3</strong><br>(31–50 miles)</td>
+                            <td>None</td>
+                            <td class="gold-col">$200 / month</td>
+                            <td class="platinum-col">$400 / month</td>
+                            <td class="reserve-col">$600 / month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Free Airport Transfers</strong></td>
+                            <td>None</td>
+                            <td class="gold-col">2 One-way / month</td>
+                            <td class="platinum-col">4 One-way / month</td>
+                            <td class="reserve-col">6 One-way / month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transfer (A to B)</strong></td>
+                            <td>$3 / mile*<br>($60 Minimum)</td>
+                            <td class="gold-col">$3 / mile*<br>($50 Minimum)</td>
+                            <td class="platinum-col">$3 / mile*<br>($50 Minimum)</td>
+                            <td class="reserve-col">$3 / mile*<br>($50 Minimum)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Charter (Hourly)</strong></td>
+                            <td>$125 / hour*<br>(4 hr Minimum)</td>
+                            <td class="gold-col">$100 / hour*<br>(3 hr Minimum)</td>
+                            <td class="platinum-col">$100 / hour*<br>(2 hr Minimum)</td>
+                            <td class="reserve-col">$100 / hour*<br>(1 hr Minimum)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <p class="table-note">
             *Plus 20% Gratuity. Phoenix Sky Harbor charges all commercial vehicles a $5 fee. Zones are based on shortest distance from primary residence or business to Terminal 4 of Phoenix Sky Harbor using Google Maps. Additional cost apply beyond mileage limit. Some cities are only eligible for certain zones, regardless of shortest distance. See terms and conditions for details.
@@ -520,7 +630,7 @@
             </p>
             <ul>
                 <li>Highest Priority: Gain the highest booking priority during peak demand periods.</li>
-                <li>Maximum Value: Includes 6 FREE one-way airport transfers every month, covering business travel and your entire household.</li>
+                <li>Max Value: You get 6 FREE one-way airport transfers per month, covering business travel and your entire household.</li>
                 <li>Lowest Minimums: Enjoy our lowest transfer minimum of $50 and a charter minimum of just 1 hour.</li>
                 <li>Ultimate Flexibility: Perfect for high-travel months with the ability to pause or downgrade during your off-season.</li>
             </ul>
