@@ -286,22 +286,35 @@
         }
         
         @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 0;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
                 letter-spacing: 2px;
+                line-height: 2.8rem;
             }
             
             .hero-description {
-                font-size: 12px;
+                font-size: 1.1rem;
+                line-height: 1.5;
+                max-width: 90%;
             }
             
             .hero-description .line1 {
                 white-space: normal;
             }
             
+            .hero-bottom {
+                padding-bottom: 40px;
+            }
+            
             .cta-button {
                 white-space: pre-line;
                 line-height: 1.4;
+                font-size: 1.1rem;
+                padding: 16px 40px;
             }
             
             .content-row {
@@ -319,6 +332,47 @@
             .fleet-list {
                 grid-template-columns: 1fr;
             }
+            
+            .image-placeholder {
+                height: 350px;
+            }
+            
+            .text-content h3 {
+                font-size: 1.6rem;
+            }
+            
+            .text-content ul,
+            .text-content li {
+                font-size: 1.1rem;
+            }
+            
+            .fleet-intro {
+                font-size: 1.1rem;
+            }
+            
+            .fleet-list li {
+                font-size: 1.1rem;
+                padding: 25px;
+            }
+            
+            .text-content p {
+                font-size: 1.1rem !important;
+            }
+            
+            section {
+                padding: 80px 20px 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                font-size: 1rem;
+                padding: 14px 35px;
+            }
         }
         
         @media (max-width: 768px) and (orientation: landscape) {
@@ -334,6 +388,10 @@
             
             .hero-bottom {
                 padding-bottom: 20px;
+            }
+            
+            .hero-description {
+                font-size: 0.9rem;
             }
         }
     </style>
