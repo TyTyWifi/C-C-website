@@ -72,14 +72,23 @@
         
         .hero-description {
             font-family: 'Raleway', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             font-weight: 400;
             line-height: 1.6;
             margin-bottom: 30px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-            max-width: 900px;
+            max-width: 1100px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        .hero-description .line1 {
+            display: block;
+            white-space: nowrap;
+        }
+        
+        .hero-description .line2 {
+            display: block;
         }
         
         .cta-section {
@@ -112,6 +121,10 @@
             padding: 100px 20px 35px 20px;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        #fleet {
+            padding-top: 75px;
         }
         
         section:first-of-type {
@@ -282,6 +295,10 @@
                 font-size: 12px;
             }
             
+            .hero-description .line1 {
+                white-space: normal;
+            }
+            
             .cta-button {
                 white-space: pre-line;
                 line-height: 1.4;
@@ -301,6 +318,22 @@
             
             .fleet-list {
                 grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                height: auto;
+                padding: 80px 20px 40px;
+            }
+            
+            .hero-content {
+                flex-grow: 0;
+            }
+            
+            .hero-bottom {
+                padding-bottom: 20px;
             }
         }
     </style>
@@ -358,7 +391,10 @@
             <h1>ARIZONA'S PREMIER LUXURY SUV SERVICE</h1>
         </div>
         <div class="hero-bottom">
-            <p class="hero-description">Luxury SUV transportation for airport transfers, corporate travel and special events<br>— starting at just $3/mile!</p>
+            <p class="hero-description">
+                <span class="line1">Luxury SUV transportation for airport transfers, corporate travel and special events</span>
+                <span class="line2">— starting at just $3/mile!</span>
+            </p>
             <a href="tel:6025314672" class="cta-button">CALL OR TEXT
 (602) 531-4672</a>
         </div>
